@@ -11,6 +11,8 @@
         android:theme="@style/Theme.Game2D">
         <activity
             android:name=".GameActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Game2D.noActionBar"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
