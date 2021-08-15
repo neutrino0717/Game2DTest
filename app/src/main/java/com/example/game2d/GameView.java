@@ -9,10 +9,9 @@ public class GameView extends SurfaceView implements Runnable{
     private Thread thread;
     private boolean isPlaying;
     private int screenX, screenY;
-    private float screenRatioX, screenRatioY;
+    public static float screenRatioX, screenRatioY;
     private Paint paint;
     private Background background1, background2;
-
 
     public GameView(Context context, int screenX, int screenY) {
         super(context);
@@ -32,9 +31,7 @@ public class GameView extends SurfaceView implements Runnable{
             update();
             draw();
             sleep();
-
         }
-
     }
 
     private void sleep() {
@@ -64,15 +61,12 @@ public class GameView extends SurfaceView implements Runnable{
             canvas.drawBitmap(background2.background, background2.x, background2.y, paint);
             getHolder().unlockCanvasAndPost(canvas);
         }
-
     }
-
 
     public void resume(){
         isPlaying = true;
         thread = new Thread(this);
         thread.start();
-
     }
 
     public void pause(){
@@ -82,6 +76,5 @@ public class GameView extends SurfaceView implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 }

@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 
 public class GameActivity extends AppCompatActivity {
-    private GameView gameView;
+    private GameView gameView; //SurfaceView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public class GameActivity extends AppCompatActivity {
         Point point = new Point();
         //get window size
         getWindowManager().getDefaultDisplay().getSize(point);
+        Log.e("test", point.toString()); //Point(2265, 1080)
         gameView = new GameView(this, point.x, point.y);
         setContentView(gameView);
 
