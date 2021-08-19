@@ -6,12 +6,13 @@ import static com.example.game2d.GameView.screenRatioY;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 
 public class Flight {
     public boolean isGoingUp = false;
     int toShoot = 0;
     int x, y, width, height, wingCount = 0, shootCount = 1;
-    Bitmap flight1, flight2, shoot1, shoot2, shoot3, shoot4, shoot5;
+    Bitmap flight1, flight2, shoot1, shoot2, shoot3, shoot4, shoot5, dead;
     private GameView gameView;
 
     public Flight(GameView gameView, int screenY, Resources res) {
@@ -28,8 +29,7 @@ public class Flight {
         flight1 = Bitmap.createScaledBitmap(flight1, width, height, false);
         flight2 = Bitmap.createScaledBitmap(flight2, width, height, false);
 
-        y = screenY/2;
-        x = (int)(64*screenRatioX);
+
         shoot1 = BitmapFactory.decodeResource(res, R.drawable.shoot1);
         shoot2 = BitmapFactory.decodeResource(res, R.drawable.shoot2);
         shoot3 = BitmapFactory.decodeResource(res, R.drawable.shoot3);
@@ -40,6 +40,10 @@ public class Flight {
         shoot3 = Bitmap.createScaledBitmap(shoot3, width, height, false);
         shoot4 = Bitmap.createScaledBitmap(shoot4, width, height, false);
         shoot5 = Bitmap.createScaledBitmap(shoot5, width, height, false);
+
+        dead = BitmapFactory.decodeResource(res, R.drawable.dead);
+        y = screenY/2;
+        x = (int)(64*screenRatioX);
     }
 
     Bitmap getFight(){
@@ -74,5 +78,13 @@ public class Flight {
         wingCount--;
         return flight2;
 
+    }
+
+    Rect getCollisionShape() {
+        return new Rect(x, y, x + width, y + height);
+    }
+
+    Bitmap getDead() {
+        return dead;
     }
 }
