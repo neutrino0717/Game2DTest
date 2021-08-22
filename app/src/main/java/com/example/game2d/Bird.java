@@ -2,17 +2,33 @@ package com.example.game2d;
 
 import static com.example.game2d.GameView.screenRatioX;
 import static com.example.game2d.GameView.screenRatioY;
+import static com.example.game2d.GameView.screenX;
+import static com.example.game2d.GameView.screenY;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
+import java.util.Random;
+
 public class Bird {
-    public int speed = 20;
-    int x = 0, y, width, height;
+    public int speed;
+    public boolean wasShot = true;
+    int x = 2000, y, width, height;
     Bitmap bird1, bird2, bird3, bird4;
     private int birdCounter;
+
+    @Override
+    public String toString() {
+        return "x:" + x + ", y:" + y + ", width:" + width + ", height:" + height;
+    }
+
+    public void reset(){
+        x = screenX;
+        y = new Random().nextInt(screenY - height );
+        speed = 5 + new Random().nextInt(10);
+    }
 
     Bird ( Resources res ){
         bird1 = BitmapFactory.decodeResource(res, R.drawable.bird1);
@@ -31,7 +47,7 @@ public class Bird {
         bird4 = Bitmap.createScaledBitmap(bird4, width, height, false);
 
         //off the screen at the start
-        y = -height;
+        reset();
     }
 
     Bitmap getBird (){

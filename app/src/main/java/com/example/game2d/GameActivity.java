@@ -19,7 +19,7 @@ public class GameActivity extends AppCompatActivity {
         Point point = new Point();
         //get window size
         getWindowManager().getDefaultDisplay().getSize(point);
-        Log.e("test", point.toString()); //Point(2265, 1080)
+        Log.e("screen", point.toString()); //Point(2265, 1080)
         gameView = new GameView(this, point.x, point.y);
         setContentView(gameView);
 
